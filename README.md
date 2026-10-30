@@ -13,14 +13,93 @@ Nothing else is used.
 
 ## Setup (same XAMPP configuration as Lab 9 and the Extra Lab)
 
-1. Configure XAMPP as in the lab manuals: Apache on port **8080** (Lab 9 §3.2) and MariaDB on
-   port **3307** (Extra Lab §4.1–4.3). Start **Apache** and **MySQL** from `xampp-control.exe`.
-2. Open `http://localhost:8080/phpmyadmin/`, click the server name (so no database is selected),
-   open the **SQL** tab, paste the contents of `setup.sql` and click **Go**.
-3. Copy the whole `notice_board` folder into `xampp\htdocs\`.
-4. Open **http://localhost:8080/notice_board/**.
+The project expects Apache on port **8080** and MariaDB on port **3307**. If your XAMPP is already
+set up this way from Lab 9 and the Extra Lab, skip to step 6.
 
-If you change the port or database name, edit only `db.php`.
+Close the XAMPP Control Panel before editing any of the files below.
+
+1. **Extract XAMPP.** Extract the standalone XAMPP ZIP to a folder you can write to, such as
+   `C:\xampp` or `D:\xampp` (not `C:\Program Files`). If you extracted it inside another folder,
+   run `setup_xampp.bat` once from the `xampp` folder. Do not install anything as a Windows
+   service. (Lab 9 §3.1)
+
+2. **Set Apache to port 8080.** Open `xampp\apache\conf\httpd.conf` in a text editor and change:
+
+   ```
+   Listen 80                ->  Listen 8080
+   ServerName localhost:80  ->  ServerName localhost:8080
+   ```
+
+   If the `ServerName` line starts with `#`, leave it as it is and add `ServerName localhost:8080`
+   on a new line. Then open `xampp\apache\conf\extra\httpd-ssl.conf` and change the HTTPS port:
+
+   ```
+   Listen 443                   ->  Listen 8443
+   <VirtualHost _default_:443>  ->  <VirtualHost _default_:8443>
+   ServerName ...:443           ->  ServerName ...:8443
+   ```
+
+   In the last line, change only the port and keep the host name already in your file.
+   (Lab 9 §3.2–3.3)
+
+3. **Set MariaDB to port 3307.** Open `xampp\mysql\bin\my.ini`. Change the port in **both** the
+   `[client]` and the `[mysqld]` sections:
+
+   ```
+   port=3306  ->  port=3307
+   ```
+
+   In the `[mysqld]` section, add this line directly below `port=3307` (if an active
+   `bind-address` line without `#` already exists, change its value instead):
+
+   ```
+   bind-address=127.0.0.1
+   ```
+
+   (Extra Lab §4.1)
+
+4. **Point phpMyAdmin to port 3307.** Open `xampp\phpMyAdmin\config.inc.php`, find the host line
+   and add the port line directly below it. If the host line says `localhost`, change it to
+   `127.0.0.1`:
+
+   ```php
+   $cfg['Servers'][$i]['host'] = '127.0.0.1';
+   $cfg['Servers'][$i]['port'] = '3307';
+   ```
+
+   (Extra Lab §4.2)
+
+5. **Match the Control Panel ports.** Open `xampp-control.exe` normally (not as administrator).
+   Click **Config** at the top right, choose **Service and Port Settings**, and set:
+   - **Apache** tab: Main Port `8080`, SSL Port `8443`
+   - **MySQL** tab: Main Port `3307`
+
+   Save. This only changes what the Control Panel displays; the file edits above are what
+   actually change the ports. (Lab 9 §3.4, Extra Lab §4.3)
+
+6. **Start the servers.** In `xampp-control.exe`, click **Start** next to **Apache** and next to
+   **MySQL**. Do not tick the Service checkboxes. Both rows should turn green, showing ports
+   `8080, 8443` and `3307`. If Windows asks to allow `mysqld.exe` through the firewall, choose
+   **Cancel**. (Extra Lab §4.4)
+
+7. **Create the database.** Open `http://localhost:8080/phpmyadmin/`, click the server name at the
+   top (it starts with *Server:*) so that no database is selected, open the **SQL** tab, paste the
+   whole contents of `setup.sql` and click **Go**.
+
+8. **Copy the project.** Copy the whole `notice_board` folder into `xampp\htdocs\`, so that
+   `xampp\htdocs\notice_board\index.php` exists.
+
+9. **Open the app** at **http://localhost:8080/notice_board/** and log in with one of the demo
+   accounts below.
+
+When you finish, click **Stop** for MySQL and Apache before closing the Control Panel. A MariaDB
+left running keeps port 3307 busy, which causes *MySQL shutdown unexpectedly* next time; if that
+happens, end your own `mysqld.exe` in Task Manager > Details and start again.
+
+**If the page shows "Could not connect to the database."**, check that MySQL is running on port
+3307 in the Control Panel and that `setup.sql` has been run. If you change the port or database
+name, edit only `db.php`.
+
 To reset the demo data, run `DROP DATABASE notice_board;` and then `setup.sql` again.
 
 ### Demo accounts (password for all: `notice123`)
