@@ -781,8 +781,11 @@ The server **repeats every check**, because a request can be sent without our Ja
 §6.5 and Lab 10, §5). It also checks:
 
 - the **token** is correct,
-- the date is a real date: `DateTime::createFromFormat("Y-m-d", ...)` rejects values like
-  `2026-02-31`,
+- the date is a real date. This is checked in two steps. `DateTime::createFromFormat("Y-m-d", ...)`
+  returns `false` for text that does not look like a date at all (for example `abc`). For an
+  impossible date such as `2026-02-31`, PHP silently rolls over to the next month (3 March), so
+  the code formats the result back to `Y-m-d` and rejects the date if it differs from what was
+  typed,
 - the category exists. If it does not, the **foreign key** makes the INSERT fail; the `catch` block
   catches that and shows "The notice could not be saved."
 
