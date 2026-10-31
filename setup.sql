@@ -54,18 +54,15 @@ INSERT INTO categories (name) VALUES
     ('Placement'),
     ('General');
 
--- Every demo account uses the password: notice123
+-- Each account's password is its login ID followed by @123 (for example office@123).
 INSERT INTO users (login_id, full_name, password_hash, role) VALUES
-    ('office',   'Department Office', '$2y$10$IqP/rZaVcXFRPe7jzcMpXuOcGmWrw5tf77lGnXhxU6wwoSRQvuJae', 'staff'),
-    ('labcoord', 'Lab Coordinator',   '$2y$10$IqP/rZaVcXFRPe7jzcMpXuOcGmWrw5tf77lGnXhxU6wwoSRQvuJae', 'staff'),
-    ('24JE9001', 'Riya Verma',        '$2y$10$IqP/rZaVcXFRPe7jzcMpXuOcGmWrw5tf77lGnXhxU6wwoSRQvuJae', 'student'),
-    ('24JE9002', 'Aman Gupta',        '$2y$10$IqP/rZaVcXFRPe7jzcMpXuOcGmWrw5tf77lGnXhxU6wwoSRQvuJae', 'student'),
-    ('24JE9003', 'Neha Singh',        '$2y$10$IqP/rZaVcXFRPe7jzcMpXuOcGmWrw5tf77lGnXhxU6wwoSRQvuJae', 'student'),
+    ('office',   'Department Office', '$2y$10$m8KZ1/ZzLWeONT0sKZ8uM.ljOeuSt/Ir/FhcoG7b3R3hirXJjKTnu', 'staff'),
+    ('labcoord', 'Lab Coordinator',   '$2y$10$3drUt9RmSn7XI6ntrJhrFuvVSgjtegK29dfi1imly3PekrdOvQ1lW', 'staff'),
     -- Group 16 members (replace the names with your own)
-    ('24JE0831', 'Group 16 Member 1', '$2y$10$IqP/rZaVcXFRPe7jzcMpXuOcGmWrw5tf77lGnXhxU6wwoSRQvuJae', 'student'),
-    ('24JE0873', 'Group 16 Member 2', '$2y$10$IqP/rZaVcXFRPe7jzcMpXuOcGmWrw5tf77lGnXhxU6wwoSRQvuJae', 'student'),
-    ('24JE0560', 'Group 16 Member 3', '$2y$10$IqP/rZaVcXFRPe7jzcMpXuOcGmWrw5tf77lGnXhxU6wwoSRQvuJae', 'student'),
-    ('24JE1033', 'Group 16 Member 4', '$2y$10$IqP/rZaVcXFRPe7jzcMpXuOcGmWrw5tf77lGnXhxU6wwoSRQvuJae', 'student');
+    ('24JE0831', 'Group 16 Member 1', '$2y$10$hrK8DM/wJJtSz/vHbLlR3.KL2xN2Wk6Y8omrTNQ5mUvmT2wjO6jsu', 'student'),
+    ('24JE0873', 'Group 16 Member 2', '$2y$10$rFZlAv2ViewTgABlNipwSuJSBrNBaITXfnaZJYopR9cLxW0aQTBoa', 'student'),
+    ('24JE0560', 'Group 16 Member 3', '$2y$10$MCVbRXMXg.7uU9DIT6J2x.2SeY22demouzQKivak4FlZP/EybM.IK', 'student'),
+    ('24JE1033', 'Group 16 Member 4', '$2y$10$ROjFs7Ao4bTHd8g/D6.MkeDk3qEvAmHvzIGYW.gC6VSc2VJoP5Ixa', 'student');
 
 -- Dates are relative to the day the script is run, so the demo always has
 -- upcoming and overdue tasks.
@@ -101,7 +98,8 @@ INSERT INTO notices (title, body, category_id, posted_by, due_date, requires_ack
      'This notice has been deactivated and is visible only in the management interface.',
      5, 1, NULL, 0, 0, NOW() - INTERVAL 30 DAY);
 
--- A few existing read/acknowledged states so the demo is not empty.
+-- A few existing read/acknowledged states so the demo is not empty
+-- (user 3 is 24JE0831 and user 4 is 24JE0873).
 INSERT INTO notice_reads (user_id, notice_id, read_at, acknowledged_at) VALUES
     (3, 2, NOW() - INTERVAL 1 DAY, NULL),
     (3, 7, NOW() - INTERVAL 5 DAY, NOW() - INTERVAL 5 DAY),

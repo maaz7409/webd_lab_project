@@ -43,9 +43,8 @@ $lastLoginId = isset($_SESSION["lastLoginId"]) ? $_SESSION["lastLoginId"] : "";
 
         <div class="demo-accounts">
             <h2>Demo accounts</h2>
-            <p>Password for every account: <code>notice123</code></p>
+            <p>Password: the login ID followed by <code>@123</code> (for example <code>office@123</code>)</p>
             <ul>
-                <li><code>24JE9001</code>, <code>24JE9002</code>, <code>24JE9003</code>: demo students</li>
                 <li><code>24JE0831</code>, <code>24JE0873</code>, <code>24JE0560</code>, <code>24JE1033</code>: Group 16 students</li>
                 <li><code>office</code>, <code>labcoord</code>: department staff (can manage notices)</li>
             </ul>

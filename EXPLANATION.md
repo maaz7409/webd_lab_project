@@ -134,9 +134,9 @@ The database is called `notice_board` and has **four tables**. `setup.sql` creat
 
 | user_id | login_id | full_name | password_hash | role |
 |---|---|---|---|---|
-| 1 | office | Department Office | $2y$10$IqP... | staff |
-| 2 | labcoord | Lab Coordinator | $2y$10$IqP... | staff |
-| 3 | 24JE9001 | Riya Verma | $2y$10$IqP... | student |
+| 1 | office | Department Office | $2y$10$m8K... | staff |
+| 2 | labcoord | Lab Coordinator | $2y$10$3dr... | staff |
+| 3 | 24JE0831 | Group 16 Member 1 | $2y$10$hrK... | student |
 
 - `login_id` is `UNIQUE`, so two users cannot have the same ID.
 - `password_hash` is **not** the password itself. It is a scrambled version made by PHP's
@@ -179,7 +179,7 @@ The table also has `body` (the full text) and `created_at` (when it was posted).
 | 3 | 2 | 2026-10-24 11:42 | NULL |
 | 3 | 7 | 2026-10-20 11:42 | 2026-10-20 11:42 |
 
-Read the first row as: "User 3 (Riya) read notice 2 at 11:42 but has not acknowledged it."
+Read the first row as: "User 3 (24JE0831) read notice 2 at 11:42 but has not acknowledged it."
 
 The meaning of each row depends on which columns are filled in:
 
@@ -931,8 +931,8 @@ such as `is-unread` or `row-inactive`). CSS decides **how** that looks.
 
 ## 15. Complete journey of one click
 
-Here is everything that happens when **Riya** clicks **Mark as read** on "Lab session rescheduled"
-(notice 6), from start to finish:
+Here is everything that happens when student **24JE0831** clicks **Mark as read** on
+"Lab session rescheduled" (notice 6), from start to finish:
 
 1. **Browser:** jQuery attached `updateNoticeStatus` to the button, so the function runs.
    `this` is the clicked button.
@@ -943,7 +943,7 @@ Here is everything that happens when **Riya** clicks **Mark as read** on "Lab se
    `POST api/update_status.php` with the body `{"noticeId":6,"action":"read","token":"..."}`.
    The session cookie is sent automatically.
 5. **Apache** receives the request and passes `update_status.php` to **PHP**.
-6. **PHP:** `auth.php` calls `session_start()` and finds Riya's session (userId 3).
+6. **PHP:** `auth.php` calls `session_start()` and finds 24JE0831's session (userId 3).
 7. **PHP:** `read_api_request()` checks POST ✔, logged in ✔, JSON ✔, token ✔.
 8. **PHP:** checks the action ✔ and that notice 6 is active ✔.
 9. **PHP → MariaDB:**

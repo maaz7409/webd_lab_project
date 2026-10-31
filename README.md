@@ -99,16 +99,18 @@ name, edit only `db.php`.
 
 To reset the demo data, run `DROP DATABASE notice_board;` and then `setup.sql` again.
 
-### Demo accounts (password for all: `notice123`)
+### Demo accounts
 
-| Login ID | Name | Role |
-|---|---|---|
-| `24JE9001` | Riya Verma | student |
-| `24JE9002` | Aman Gupta | student |
-| `24JE9003` | Neha Singh | student |
-| `24JE0831`, `24JE0873`, `24JE0560`, `24JE1033` | Group 16 Member 1–4 (placeholder names) | student |
-| `office` | Department Office | staff (can manage notices) |
-| `labcoord` | Lab Coordinator | staff (can manage notices) |
+Each password is the login ID followed by `@123`.
+
+| Login ID | Password | Name | Role |
+|---|---|---|---|
+| `24JE0831` | `24JE0831@123` | Group 16 Member 1 (placeholder name) | student |
+| `24JE0873` | `24JE0873@123` | Group 16 Member 2 (placeholder name) | student |
+| `24JE0560` | `24JE0560@123` | Group 16 Member 3 (placeholder name) | student |
+| `24JE1033` | `24JE1033@123` | Group 16 Member 4 (placeholder name) | student |
+| `office` | `office@123` | Department Office | staff (can manage notices) |
+| `labcoord` | `labcoord@123` | Lab Coordinator | staff (can manage notices) |
 
 ## How the requirements are met
 
@@ -184,7 +186,7 @@ a button is clicked twice or two requests arrive together.
 
 ## Demo walkthrough
 
-1. Log in as `24JE9001`. The summary shows unread, pending and overdue counts. Click **Mark as read**
+1. Log in as `24JE0831`. The summary shows unread, pending and overdue counts. Click **Mark as read**
    and **Acknowledge** on a few notices. The cards and counts change without a page reload
    (DevTools → Network shows the JSON request and response).
 2. Search for `lab`, pick a category, or choose *Tasks to acknowledge* (sorted by due date).
