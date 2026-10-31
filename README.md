@@ -21,7 +21,7 @@ Close the XAMPP Control Panel before editing any of the files below.
 1. **Extract XAMPP.** Extract the standalone XAMPP ZIP to a folder you can write to, such as
    `C:\xampp` or `D:\xampp` (not `C:\Program Files`). If you extracted it inside another folder,
    run `setup_xampp.bat` once from the `xampp` folder. Do not install anything as a Windows
-   service. (Lab 9 §3.1)
+   service. 
 
 2. **Set Apache to port 8080.** Open `xampp\apache\conf\httpd.conf` in a text editor and change:
 
@@ -40,7 +40,6 @@ Close the XAMPP Control Panel before editing any of the files below.
    ```
 
    In the last line, change only the port and keep the host name already in your file.
-   (Lab 9 §3.2–3.3)
 
 3. **Set MariaDB to port 3307.** Open `xampp\mysql\bin\my.ini`. Change the port in **both** the
    `[client]` and the `[mysqld]` sections:
@@ -56,7 +55,6 @@ Close the XAMPP Control Panel before editing any of the files below.
    bind-address=127.0.0.1
    ```
 
-   (Extra Lab §4.1)
 
 4. **Point phpMyAdmin to port 3307.** Open `xampp\phpMyAdmin\config.inc.php`, find the host line
    and add the port line directly below it. If the host line says `localhost`, change it to
@@ -67,7 +65,6 @@ Close the XAMPP Control Panel before editing any of the files below.
    $cfg['Servers'][$i]['port'] = '3307';
    ```
 
-   (Extra Lab §4.2)
 
 5. **Match the Control Panel ports.** Open `xampp-control.exe` normally (not as administrator).
    Click **Config** at the top right, choose **Service and Port Settings**, and set:
@@ -75,12 +72,12 @@ Close the XAMPP Control Panel before editing any of the files below.
    - **MySQL** tab: Main Port `3307`
 
    Save. This only changes what the Control Panel displays; the file edits above are what
-   actually change the ports. (Lab 9 §3.4, Extra Lab §4.3)
+   actually change the ports.
 
 6. **Start the servers.** In `xampp-control.exe`, click **Start** next to **Apache** and next to
    **MySQL**. Do not tick the Service checkboxes. Both rows should turn green, showing ports
    `8080, 8443` and `3307`. If Windows asks to allow `mysqld.exe` through the firewall, choose
-   **Cancel**. (Extra Lab §4.4)
+   **Cancel**.
 
 7. **Create the database.** Open `http://localhost:8080/phpmyadmin/`, click the server name at the
    top (it starts with *Server:*) so that no database is selected, open the **SQL** tab, paste the
