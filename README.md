@@ -105,10 +105,10 @@ Each password is the login ID followed by `@123`.
 
 | Login ID | Password | Name | Role |
 |---|---|---|---|
-| `24JE0831` | `24JE0831@123` | Group 16 Member 1 (placeholder name) | student |
-| `24JE0873` | `24JE0873@123` | Group 16 Member 2 (placeholder name) | student |
-| `24JE0560` | `24JE0560@123` | Group 16 Member 3 (placeholder name) | student |
-| `24JE1033` | `24JE1033@123` | Group 16 Member 4 (placeholder name) | student |
+| `24JE0831` | `24JE0831@123` | Group 16 Member 1 (Patanjali Dwivedi) | student |
+| `24JE0873` | `24JE0873@123` | Group 16 Member 2 (Vishal Kumar) | student |
+| `24JE0560` | `24JE0560@123` | Group 16 Member 3 (Mohd Maaz Khan) | student |
+| `24JE1033` | `24JE1033@123` | Group 16 Member 4 (Piyush Kumar) | student |
 | `office` | `office@123` | Department Office | staff (can manage notices) |
 | `labcoord` | `labcoord@123` | Lab Coordinator | staff (can manage notices) |
 
